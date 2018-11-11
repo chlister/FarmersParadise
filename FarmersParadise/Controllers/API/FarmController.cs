@@ -73,6 +73,7 @@ namespace FarmersParadise.Controllers.API
                     //context.SaveChanges();
                     return Ok();
                 }
+                return BadRequest();
             }
             return BadRequest();
         }
