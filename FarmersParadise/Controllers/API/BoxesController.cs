@@ -46,8 +46,9 @@ namespace FarmersParadise.Controllers.API
             using (var context = new FarmerContext())
             {
                 context.Boxes.Add(box);
-                context.SaveChanges();
-                return Ok();
+                var boxInDb = context.Boxes.Find(box);
+                //context.SaveChanges();
+                return Created("", boxInDb);
             }
         }
 
@@ -69,6 +70,8 @@ namespace FarmersParadise.Controllers.API
                 dbBox.Pigs = box.Pigs;
                 dbBox.BoxName = box.BoxName;
                 dbBox.Barn = box.Barn;
+                //context.SaveChanges();
+
                 return Ok();
             }
         }
@@ -83,6 +86,7 @@ namespace FarmersParadise.Controllers.API
                 if (dbBox == null)
                     return BadRequest();
                 context.Boxes.Remove(dbBox);
+                //context.SaveChanges();
 
                 return Ok();
             }
