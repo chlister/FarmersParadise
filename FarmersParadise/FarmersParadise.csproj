@@ -88,6 +88,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\App\styles.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -95,6 +96,8 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Global.asax" />
+    <Content Include="Index.html" />
+    <Content Include="Scripts\App\app.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -135,7 +138,7 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\API\BarnController.cs" />
-    <Compile Include="Controllers\API\BoxesController.cs" />
+    <Compile Include="Controllers\API\BoxController.cs" />
     <Compile Include="Controllers\API\FarmController.cs" />
     <Compile Include="Controllers\API\PigController.cs" />
     <Compile Include="Global.asax.cs">
