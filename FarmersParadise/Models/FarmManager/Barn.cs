@@ -31,5 +31,9 @@ namespace FarmersParadise.Models.FarmManager
         {
             BarnName = barnName;
         }
+
+        public Barn()
+        {
+        }
     }
 }
