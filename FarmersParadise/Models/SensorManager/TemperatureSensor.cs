@@ -8,6 +8,6 @@ namespace FarmersParadise.Models.SensorManager
 {
     public class TemperatureSensor : Sensor, IBarnSensor
     {
-        public Barn Barn { get; set; }
+        public virtual Barn Barn { get; set; }
     }
 }

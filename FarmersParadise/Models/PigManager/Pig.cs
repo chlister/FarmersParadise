@@ -28,6 +28,6 @@ namespace FarmersParadise.Models.PigManager
             set { pigType = value; }
         }
         
-        public Box Box { get; set; }
+        public virtual Box Box { get; set; }
     }
 }

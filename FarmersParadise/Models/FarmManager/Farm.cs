@@ -24,7 +24,7 @@ namespace FarmersParadise.Models.FarmManager
             set { farmName = value; }
         }
 
-        public ICollection<Barn> Barns { get; set; }
+        public virtual ICollection<Barn> Barns { get; set; }
 
         public Farm(){}
         public Farm(string farmName)
