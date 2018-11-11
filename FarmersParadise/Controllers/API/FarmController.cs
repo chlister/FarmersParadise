@@ -52,7 +52,7 @@ namespace FarmersParadise.Controllers.API
                 {
                     newFarm = farm;
                     context.Farms.Add(newFarm);
-                    context.SaveChanges();
+                    //context.SaveChanges();
 
                     return Created("Added to Db", newFarm);
                 }

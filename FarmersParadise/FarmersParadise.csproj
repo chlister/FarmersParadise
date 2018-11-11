@@ -137,6 +137,7 @@
     <Compile Include="Controllers\API\BarnController.cs" />
     <Compile Include="Controllers\API\BoxesController.cs" />
     <Compile Include="Controllers\API\FarmController.cs" />
+    <Compile Include="Controllers\API\PigController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
