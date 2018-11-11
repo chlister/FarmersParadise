@@ -11,15 +11,20 @@ namespace FarmersParadise.Controllers.API
 {
     public class PigController : ApiController
     {
+        private FarmerContext _ctx;
+
+        public PigController()
+        {
+            _ctx = new FarmerContext();
+        }
+
         // GET: api/Pig
         [HttpGet]
         public IHttpActionResult GetAllPigs()
         {
-            using (var context = new FarmerContext())
-            {
-                var pigs = context.Pigs.ToList();
-                return Ok(pigs);
-            }
+            var pigs = _ctx.Pigs.ToList();
+            return Ok(pigs);
+
         }
 
         // GET: api/PigsWithoutBox
@@ -31,25 +36,20 @@ namespace FarmersParadise.Controllers.API
         [Route("api/Pigs/PigsWithoutBox")]
         public IHttpActionResult PigsWithoutBox()
         {
-            using (var context = new FarmerContext())
-            {
-                var pigs = context.Pigs.Where(p => p.Box == null).ToList(); // If box property is null the pig is homeless
-                return Ok(pigs);
-            }
+            var pigs = _ctx.Pigs.Where(p => p.Box == null).ToList(); // If box property is null the pig is homeless
+            return Ok(pigs);
         }
 
         // GET: api/Pig/5
         [HttpGet]
         public IHttpActionResult Get(int id)
         {
-            using (var context = new FarmerContext())
-            {
-                var dbPig = context.Pigs.Where(p => p.PigId == id).SingleOrDefault();
-                if (dbPig == null)
-                    return BadRequest();
+            var dbPig = _ctx.Pigs.Where(p => p.PigId == id).SingleOrDefault();
+            if (dbPig == null)
+                return BadRequest();
 
-                return Ok(dbPig);
-            }
+            return Ok(dbPig);
+
         }
 
         // POST: api/Pig
@@ -59,12 +59,10 @@ namespace FarmersParadise.Controllers.API
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            using (var context = new FarmerContext())
-            {
-                context.Pigs.Add(pig);
-                //context.SaveChanges();
-                return Ok();
-            }
+            _ctx.Pigs.Add(pig);
+            //context.SaveChanges();
+            return Ok();
+
         }
 
         // PUT: api/Pig/5
@@ -74,35 +72,31 @@ namespace FarmersParadise.Controllers.API
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            using (var context = new FarmerContext())
-            {
-                var dbPig = context.Pigs.Where(p => p.PigId == id).SingleOrDefault();
+            var dbPig = _ctx.Pigs.Where(p => p.PigId == id).SingleOrDefault();
 
-                if (dbPig == null)
-                    return NotFound();
+            if (dbPig == null)
+                return NotFound();
 
-                dbPig.Box = pig.Box;
-                //context.SaveChanges();
+            dbPig.Box = pig.Box;
+            //context.SaveChanges();
 
-                return Ok();
-            }
+            return Ok();
+
         }
 
         // DELETE: api/Pig/5
         [HttpDelete]
         public IHttpActionResult Delete(int id)
         {
-            using (var context = new FarmerContext())
-            {
-                var dbPig = context.Pigs.Where(p => p.PigId == id).SingleOrDefault();
-                if (dbPig == null)
-                    return BadRequest();
+            var dbPig = _ctx.Pigs.Where(p => p.PigId == id).SingleOrDefault();
+            if (dbPig == null)
+                return BadRequest();
 
-                context.Pigs.Remove(dbPig);
-                //context.SaveChanges();
+            _ctx.Pigs.Remove(dbPig);
+            //context.SaveChanges();
 
-                return Ok();
-            }
+            return Ok();
+
         }
     }
 }

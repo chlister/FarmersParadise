@@ -11,32 +11,34 @@ namespace FarmersParadise.Controllers.API
 {
     public class BarnController : ApiController
     {
+        private FarmerContext _ctx;
+
+        public BarnController()
+        {
+            _ctx = new FarmerContext();
+        }
         // GET: api/Barn
         [HttpGet]
         public IHttpActionResult Get()
         {
-            using (var context = new FarmerContext())
-            {
-                var barnList = context.Barns.ToList();
+            var barnList = _ctx.Barns.ToList();
 
-                return Ok(barnList);
-            }
+            return Ok(barnList);
+
         }
 
         // GET: api/Barn/5
         [HttpGet]
         public IHttpActionResult Get(int id)
         {
-            using (var context = new FarmerContext())
-            {
-                var barn = context.Barns.Where(b => b.BarnId == id).SingleOrDefault();
+            var barn = _ctx.Barns.Where(b => b.BarnId == id).SingleOrDefault();
 
-                if (barn != null)
-                {
-                    return Ok(barn);
-                }
-                return BadRequest();
+            if (barn != null)
+            {
+                return Ok(barn);
             }
+            return BadRequest();
+
         }
 
         // POST: api/Barn
@@ -45,12 +47,10 @@ namespace FarmersParadise.Controllers.API
         {
             if (!ModelState.IsValid) // ModelState is when the JSON object is bound to the Barn object
             {
-                using (var context = new FarmerContext())
-                {
-                    context.Barns.Add(barn);
-                    //context.SaveChanges();
-                    return Created("Created barn: ", barn);
-                }
+                _ctx.Barns.Add(barn);
+                //context.SaveChanges();
+                return Created("Created barn: ", barn);
+
             }
             return BadRequest();
         }
@@ -61,18 +61,16 @@ namespace FarmersParadise.Controllers.API
         {
             if (!ModelState.IsValid)
             {
-                using (var context = new FarmerContext())
+                var dbBarn = _ctx.Barns.Where(b => b.BarnId == barn.BarnId).SingleOrDefault();
+                if (dbBarn != null)
                 {
-                    var dbBarn = context.Barns.Where(b => b.BarnId == barn.BarnId).SingleOrDefault();
-                    if (dbBarn != null)
-                    {
-                        dbBarn.BarnName = barn.BarnName;
-                        dbBarn.Boxes = barn.Boxes;
-                        //context.SaveChanges();
-                        return Ok();
-                    }
-                    return BadRequest();
+                    dbBarn.BarnName = barn.BarnName;
+                    dbBarn.Boxes = barn.Boxes;
+                    //context.SaveChanges();
+                    return Ok();
                 }
+                return BadRequest();
+
             }
             return BadRequest();
         }
@@ -81,15 +79,13 @@ namespace FarmersParadise.Controllers.API
         [HttpDelete]
         public IHttpActionResult Delete(int id)
         {
-            using (var context = new FarmerContext())
-            {
-                var dbBarn = context.Barns.Where(b => b.BarnId == id).SingleOrDefault();
-                if (dbBarn == null)
-                    return BadRequest();
-                context.Barns.Remove(dbBarn);
-                //context.SaveChanges();
-                return Ok();
-            }
+            var dbBarn = _ctx.Barns.Where(b => b.BarnId == id).SingleOrDefault();
+            if (dbBarn == null)
+                return BadRequest();
+            _ctx.Barns.Remove(dbBarn);
+            //context.SaveChanges();
+            return Ok();
+
         }
     }
 }
