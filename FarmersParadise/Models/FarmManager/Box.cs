@@ -8,31 +8,12 @@ namespace FarmersParadise.Models.FarmManager
 {
     public class Box
     {
-        private int boxId;
-
-        public int BoxId
-        {
-            get { return boxId; }
-            set { boxId = value; }
-        }
-        private string boxName;
-
-        public string BoxName
-        {
-            get { return boxName; }
-            set { boxName = value; }
-        }
-
-        private BoxType boxType;
-
-        public BoxType BoxType
-        {
-            get { return boxType; }
-            set { boxType = value; }
-        }
-
-        public Barn Barn { get; set; }
-
-        public ICollection<Pig> Pigs { get; set; }
-    } 
+        public int BoxId { get; set; }
+        public string BoxName { get; set; }
+        public BoxType BoxType { get; set; }
+        
+        // Foreign keys
+        public virtual Barn Barn { get; set; }
+        public virtual ICollection<Pig> Pigs { get; set; }
+    }
 }
