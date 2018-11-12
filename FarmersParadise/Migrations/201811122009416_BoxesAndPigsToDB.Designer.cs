@@ -7,13 +7,13 @@ namespace FarmersParadise.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class ChangesToDB : IMigrationMetadata
+    public sealed partial class BoxesAndPigsToDB : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ChangesToDB));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(BoxesAndPigsToDB));
         
         string IMigrationMetadata.Id
         {
-            get { return "201811121702471_ChangesToDB"; }
+            get { return "201811122009416_BoxesAndPigsToDB"; }
         }
         
         string IMigrationMetadata.Source

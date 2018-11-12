@@ -11,20 +11,25 @@ namespace FarmersParadise.Models.FarmManager
         public int BarnId { get; set; }
         public string BarnName { get; set; }
 
-        [Required]
-        public int FarmId { get; set; }
-        public Farm Farm { get; set; }
-
-        public virtual ICollection<Box> Boxes { get; set; }
-
-        public Barn(string barnName)
+        #region Ctor
+        public Barn(string barnName) : base()
         {
             BarnName = barnName;
         }
 
         public Barn()
         {
-            Boxes = new HashSet<Box>();
+            //Boxes = new HashSet<Box>();
         }
+        #endregion
+
+        //Foreign Key
+        [Required]
+        public int FarmId { get; set; }
+        public virtual Farm Farm { get; set; }
+
+        public virtual ICollection<Box> Boxes { get; set; }
+
+
     }
 }

@@ -20,8 +20,8 @@ namespace FarmersParadise.Models
         public DbSet<Farm> Farms { get; set; }
         public DbSet<Barn> Barns { get; set; }
         public DbSet<Box> Boxes { get; set; }
-        //public DbSet<BoxType> BoxTypes { get; set; } //Marc vil gerne have den står der
+        //public DbSet<BoxType> BoxTypes { get; set; } //
         public DbSet<Pig> Pigs { get; set; }
-        public DbSet<TemperatureSensor> TemperatureSensors { get; set; }
+        //public DbSet<TemperatureSensor> TemperatureSensors { get; set; }
     }
 }

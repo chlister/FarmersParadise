@@ -7,13 +7,13 @@ namespace FarmersParadise.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class AddedDbClasses : IMigrationMetadata
+    public sealed partial class FarmsAndBarnsToDb : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedDbClasses));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(FarmsAndBarnsToDb));
         
         string IMigrationMetadata.Id
         {
-            get { return "201811100826138_AddedDbClasses"; }
+            get { return "201811121907117_FarmsAndBarnsToDb"; }
         }
         
         string IMigrationMetadata.Source

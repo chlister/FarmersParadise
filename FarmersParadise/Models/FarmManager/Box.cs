@@ -15,15 +15,17 @@ namespace FarmersParadise.Models.FarmManager
         [Required]
         public BoxType BoxType { get; set; }
 
-        // Foreign keys
-        [Required]
-        public int BarnId { get; set; }
-        public Barn Barn { get; set; }
-        public ICollection<Pig> Pigs { get; set; }
-
         public Box()
         {
             Pigs = new HashSet<Pig>();
         }
+
+        // Foreign keys
+        [Required]
+        public int BarnId { get; set; }
+        public Barn Barn { get; set; }
+
+        public ICollection<Pig> Pigs { get; set; }
+
     }
 }

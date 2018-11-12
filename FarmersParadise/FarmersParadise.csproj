@@ -152,13 +152,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201811100826138_AddedDbClasses.cs" />
-    <Compile Include="Migrations\201811100826138_AddedDbClasses.Designer.cs">
-      <DependentUpon>201811100826138_AddedDbClasses.cs</DependentUpon>
+    <Compile Include="Migrations\201811121907117_FarmsAndBarnsToDb.cs" />
+    <Compile Include="Migrations\201811121907117_FarmsAndBarnsToDb.Designer.cs">
+      <DependentUpon>201811121907117_FarmsAndBarnsToDb.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201811121702471_ChangesToDB.cs" />
-    <Compile Include="Migrations\201811121702471_ChangesToDB.Designer.cs">
-      <DependentUpon>201811121702471_ChangesToDB.cs</DependentUpon>
+    <Compile Include="Migrations\201811122009416_BoxesAndPigsToDB.cs" />
+    <Compile Include="Migrations\201811122009416_BoxesAndPigsToDB.Designer.cs">
+      <DependentUpon>201811122009416_BoxesAndPigsToDB.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\FarmerContext.cs" />
@@ -206,11 +206,11 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201811100826138_AddedDbClasses.resx">
-      <DependentUpon>201811100826138_AddedDbClasses.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201811121907117_FarmsAndBarnsToDb.resx">
+      <DependentUpon>201811121907117_FarmsAndBarnsToDb.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811121702471_ChangesToDB.resx">
-      <DependentUpon>201811121702471_ChangesToDB.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201811122009416_BoxesAndPigsToDB.resx">
+      <DependentUpon>201811122009416_BoxesAndPigsToDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

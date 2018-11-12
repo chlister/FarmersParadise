@@ -23,6 +23,7 @@ function CreateBarn() {
         var currentBarn = {};
         currentBarn.BarnId = 0;
         currentBarn.BarnName = $("#CreateName").val();
+        currentBarn.FarmId = Farm.FarmId;
         currentBarn.Farm = Farm;
         currentBarn.Barns = null;
         // Subscribes to an event wich returns the JSON data
