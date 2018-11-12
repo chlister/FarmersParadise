@@ -1,6 +1,5 @@
 ﻿// this is needed because the .js file will load before the DOM
-$(document).ready(function () {
-
+window.onload = function () {
     httpRequest.onload = function () {
         // Looks at the respons from API.
         if (httpRequest.status === 200 || httpRequest.status === 201) {
@@ -19,6 +18,7 @@ $(document).ready(function () {
     };
     // Calling API for a farm
     callWebservice("GET", "farm");
+};
 
     // Loads the farm view on the page
     // param object is the given Farm object from the API
@@ -76,4 +76,3 @@ $(document).ready(function () {
     //}
 
     //console.info("Ready");
-});
