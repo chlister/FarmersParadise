@@ -22,6 +22,28 @@ h2 {
     min-width: 50px;
 }
 
+button {
+    color: #000 !important;
+    text-transform: uppercase;
+    background: #FFE3C6;
+    padding: 10px;
+    border-radius: 30px;
+    display: inline-block;
+    box-shadow: 0 5px #999;
+    border: none;
+    outline: none;
+}
+    button:hover {
+        background-color: #DFC3A6
+    }
+    button:active {
+        background-color: #cFb396;
+        outline: none;
+        box-shadow: 0 2px #666;
+        transform: translateY(2px);
+    }
+
+
 table.cinereousTable {
     border: 4px solid #948473;
     background-color: #948473;
