@@ -12,7 +12,9 @@ window.onload = function () {
             alert("Udfyld et navn til gården");
         }
         else {
-            createFarm();
+            //createFarm();
+            $("#js-farmContainer").empty();
+            $("#js-farmContainer").load("Page/FarmView.html"); 
         }
     });
 };
@@ -41,6 +43,7 @@ function renderHTML(data) {
     }
     // Adds the strings to the html page
     farmContainer.insertAdjacentHTML("beforeend", htmlString);  
+    
 }
 
 // Calls the specified APItarget with the method request.
