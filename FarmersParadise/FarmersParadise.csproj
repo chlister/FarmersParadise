@@ -100,6 +100,7 @@
     <Content Include="Page\FarmView.html" />
     <Content Include="Scripts\App\app.js" />
     <Content Include="Scripts\App\farmView.js" />
+    <Content Include="Scripts\App\webservice.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />

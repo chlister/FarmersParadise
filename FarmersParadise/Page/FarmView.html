@@ -5,12 +5,14 @@
             <thead>
                 <tr>
                     <th><h2>Barns:</h2></th>
-                    <th align="center"><button id="js-BarnCreate"> + </button></th>
+                    <th align="center"><button id="js-BarnCreate"> Create </button></th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td colspan="2">January</td>
+                    <td colspan="2">
+                        <div id="js-barnsContainer"></div>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -20,7 +22,7 @@
             <thead>
                 <tr>
                     <th><h2>Sensors:</h2></th>
-                    <th align="center"><button id="js-SensorsCreate"> + </button></th>
+                    <th align="center"><button id="js-farmCreate" onclick="createFarm()"> Create </button></th>
                 </tr>
             </thead>
             <tbody>
@@ -35,12 +37,13 @@
             <thead>
                 <tr>
                     <th><h2>Pigs:</h2></th>
-                    <th align="center"><button id="js-PigCreate"> + </button></th>
+                    <th align="center"><button id="js-PigCreate"> Create </button></th>
+                    <th align="center"><button id="js-PigMove"> Move </button></th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td colspan="2">January</td>
+                    <td colspan="3"><div id="js-pigsContainer"></div></td>
                 </tr>
             </tbody>
         </table>

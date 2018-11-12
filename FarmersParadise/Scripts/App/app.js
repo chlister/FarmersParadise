@@ -1,5 +1,4 @@
 ﻿var currentFarm = {};
-var httpRequest = new XMLHttpRequest();
 var farmCreateBtn;
 var farmContainer;
 
@@ -13,10 +12,12 @@ window.onload = function () {
         }
         else {
             //createFarm();
-            //$("#js-farmContainer").empty();
             $("#js-farmContainer").load("Page/FarmView.html", function (responseTxt, statusTxt, xhr) {
                 if (statusTxt == "error")
                     alert("Error: " + xhr.status + ": " + xhr.statusText);
+                if (statusTxt == "success") {
+                    Farmview_init();
+                }
             });
         }
     });
@@ -47,13 +48,6 @@ function renderHTML(data) {
     // Adds the strings to the html page
     farmContainer.insertAdjacentHTML("beforeend", htmlString);  
     
-}
-
-// Calls the specified APItarget with the method request.
-function callWebservice(method, APItarget) {
-    var url = 'http://localhost:53880/api/' + APItarget;
-    httpRequest.open(method, url);
-    httpRequest.send();
 }
 
 
