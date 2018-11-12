@@ -15,7 +15,7 @@ namespace FarmersParadise.Models.FarmManager
         public int FarmId { get; set; }
         public Farm Farm { get; set; }
 
-        public ICollection<Box> Boxes { get; set; }
+        public virtual ICollection<Box> Boxes { get; set; }
 
         public Barn(string barnName)
         {
@@ -24,6 +24,7 @@ namespace FarmersParadise.Models.FarmManager
 
         public Barn()
         {
+            Boxes = new HashSet<Box>();
         }
     }
 }

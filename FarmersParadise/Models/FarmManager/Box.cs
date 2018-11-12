@@ -11,6 +11,7 @@ namespace FarmersParadise.Models.FarmManager
     {
         public int BoxId { get; set; }
         public string BoxName { get; set; }
+        [EnumDataType(typeof(BoxType))]
         [Required]
         public BoxType BoxType { get; set; }
 
@@ -19,5 +20,10 @@ namespace FarmersParadise.Models.FarmManager
         public int BarnId { get; set; }
         public Barn Barn { get; set; }
         public ICollection<Pig> Pigs { get; set; }
+
+        public Box()
+        {
+            Pigs = new HashSet<Pig>();
+        }
     }
 }
