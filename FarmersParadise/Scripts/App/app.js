@@ -1,4 +1,4 @@
-﻿var httpRequest = new XMLHttpRequest();
+﻿
 
 // this is needed because the .js file will load before the DOM
 window.onload = function () {
@@ -8,6 +8,12 @@ window.onload = function () {
     }
     else {
         console.log("Found a farm");
+        $("#js-farmContainer").load("Page/FarmView.html", function (responseTxt, statusTxt, xhr) {
+            if (statusTxt == "error")
+                alert("Error: " + xhr.status + ": " + xhr.statusText);
+            if (statusTxt == "success") {
+                Farmview_init();
+            }
     }
 };
 
@@ -47,22 +53,8 @@ function renderHTML(data) {
         htmlString += "<p>" + data[i].FarmName + ".</p>";
     }
     // Adds the strings to the html page
-    farmContainer.insertAdjacentHTML("beforeend", htmlString);
-
-}
-
-// Calls the specified APItarget with the method request.
-function callWebservice(method, APItarget, index = -1) {
-    var url = "";
-    if (index < 0)
-        url = 'http://localhost:53880/api/' + APItarget;
-
-    else
-        url = 'http://localhost:53880/api/' + APItarget + '/' + index;
-
-    httpRequest.open(method, url);
-    httpRequest.send();
-    return httpRequest;
+    farmContainer.insertAdjacentHTML("beforeend", htmlString);  
+    
 }
 
 $(document).ready(function () {
