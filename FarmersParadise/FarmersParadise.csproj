@@ -98,6 +98,7 @@
     <Content Include="Global.asax" />
     <Content Include="Index.html" />
     <Content Include="Page\FarmView.html" />
+    <Content Include="Page\initPageView.html" />
     <Content Include="Scripts\App\app.js" />
     <Content Include="Scripts\App\farmView.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />

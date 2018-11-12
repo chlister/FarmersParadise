@@ -1,33 +1,38 @@
-﻿var currentFarm = {};
-var httpRequest = new XMLHttpRequest();
-var farmCreateBtn;
-var farmContainer;
+﻿var httpRequest = new XMLHttpRequest();
 
 // this is needed because the .js file will load before the DOM
 window.onload = function () {
-    farmContainer = document.getElementById("js-farmContainer");
-    farmCreateBtn = document.getElementById("js-farmCreate");
-    farmCreateBtn.addEventListener("click", function () {
-        if ($("#farmName").val() === "") {
-            alert("Udfyld et navn til gården");
-        }
-        else {
-            //createFarm();
-            $("#js-farmContainer").empty();
-            $("#js-farmContainer").load("Page/FarmView.html"); 
-        }
-    });
+    if (callWebservice("GET", "farm") !== "") {
+        var jsPage = $("#js-page");
+        jsPage.load("Page/initPageView.html");
+    }
+    else {
+        console.log("Found a farm");
+    }
 };
+
+function btnCreateFarm() {
+    if ($("#farmName").val() === "") {
+        alert("Udfyld et navn til gården");
+    }
+    else {
+        createFarm();
+    }
+}
 
 function createFarm() {
     // TODO Webservice call
+    var currentFarm = {};
     currentFarm.FarmName = $("#farmName").val();
+
 
     // Subscribes to an event wich returns the JSON data
     httpRequest.onload = function () {
         var data = JSON.parse(httpRequest.responseText);
-        console.log(data[0].FarmName);
-        renderHTML(data);
+        if (data.length !== 0) {
+            console.log(data[0].FarmName);
+            renderHTML(data);
+        }
     };
     callWebservice('GET', 'Farm');
     //httpRequest.send();
@@ -42,17 +47,23 @@ function renderHTML(data) {
         htmlString += "<p>" + data[i].FarmName + ".</p>";
     }
     // Adds the strings to the html page
-    farmContainer.insertAdjacentHTML("beforeend", htmlString);  
-    
+    farmContainer.insertAdjacentHTML("beforeend", htmlString);
+
 }
 
 // Calls the specified APItarget with the method request.
-function callWebservice(method, APItarget) {
-    var url = 'http://localhost:53880/api/' + APItarget;
+function callWebservice(method, APItarget, index = -1) {
+    var url = "";
+    if (index < 0)
+        url = 'http://localhost:53880/api/' + APItarget;
+
+    else
+        url = 'http://localhost:53880/api/' + APItarget + '/' + index;
+
     httpRequest.open(method, url);
     httpRequest.send();
+    return httpRequest;
 }
-
 
 $(document).ready(function () {
     console.info("Ready");
