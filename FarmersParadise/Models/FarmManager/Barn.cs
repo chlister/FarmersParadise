@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -7,25 +8,14 @@ namespace FarmersParadise.Models.FarmManager
 {
     public class Barn
     {
-        private int barnId;
+        public int BarnId { get; set; }
+        public string BarnName { get; set; }
 
-        public int BarnId
-        {
-            get { return barnId; }
-            set { barnId = value; }
-        }
+        [Required]
+        public int FarmId { get; set; }
+        public Farm Farm { get; set; }
 
-        private string barnName;
-
-        public string BarnName
-        {
-            get { return barnName; }
-            set { barnName = value; }
-        }
-
-        public virtual Farm Farm { get; set; }
-
-        public virtual ICollection<Box> Boxes { get; set; }
+        public ICollection<Box> Boxes { get; set; }
 
         public Barn(string barnName)
         {

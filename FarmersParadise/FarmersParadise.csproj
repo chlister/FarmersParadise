@@ -156,6 +156,10 @@
     <Compile Include="Migrations\201811100826138_AddedDbClasses.Designer.cs">
       <DependentUpon>201811100826138_AddedDbClasses.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811121702471_ChangesToDB.cs" />
+    <Compile Include="Migrations\201811121702471_ChangesToDB.Designer.cs">
+      <DependentUpon>201811121702471_ChangesToDB.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\FarmerContext.cs" />
     <Compile Include="Models\FarmManager\Barn.cs" />
@@ -204,6 +208,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201811100826138_AddedDbClasses.resx">
       <DependentUpon>201811100826138_AddedDbClasses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811121702471_ChangesToDB.resx">
+      <DependentUpon>201811121702471_ChangesToDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

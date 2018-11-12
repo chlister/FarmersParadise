@@ -11,7 +11,7 @@ namespace FarmersParadise.Models
 {
     public class FarmerContext : DbContext
     {
-        public FarmerContext(): base()
+        public FarmerContext(): base("localDb")
         {
 
         }

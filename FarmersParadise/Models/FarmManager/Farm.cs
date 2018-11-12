@@ -8,23 +8,11 @@ namespace FarmersParadise.Models.FarmManager
     
     public class Farm
     {
-        private int farmId;
+        public int FarmId { get; set; }
 
-        public int FarmId
-        {
-            get { return farmId; }
-            set { farmId = value; }
-        }
+        public string FarmName { get; set; }
 
-        private string farmName;
-
-        public string FarmName
-        {
-            get { return farmName; }
-            set { farmName = value; }
-        }
-
-        public virtual ICollection<Barn> Barns { get; set; }
+        public  ICollection<Barn> Barns { get; set; }
 
         public Farm(){}
         public Farm(string farmName)
