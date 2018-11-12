@@ -9,6 +9,17 @@ function Farmview_init(object) {
     Farmview_GetBarns();
 }
 
+function Farmview_Create(type) {
+    
+    $("#js-page").load("Page/CreateView.html", function (responseTxt, statusTxt, xhr) {
+        if (statusTxt === "error")
+            alert("Error: " + xhr.status + ": " + xhr.statusText);
+        if (statusTxt === "success") {
+            CreateView_init(type);
+        }
+    });
+}
+
 function Farmview_GetBarns() {
     barnsContainer = document.getElementById("js-barnsContainer");
 

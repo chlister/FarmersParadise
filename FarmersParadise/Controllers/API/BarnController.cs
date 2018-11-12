@@ -45,7 +45,7 @@ namespace FarmersParadise.Controllers.API
         [HttpPost]
         public IHttpActionResult Post(Barn barn)
         {
-            if (!ModelState.IsValid) // ModelState is when the JSON object is bound to the Barn object
+            if (ModelState.IsValid) // ModelState is when the JSON object is bound to the Barn object
             {
                 _ctx.Barns.Add(barn);
                 _ctx.SaveChanges();
@@ -59,7 +59,7 @@ namespace FarmersParadise.Controllers.API
         [HttpPut]
         public IHttpActionResult Put(int id, Barn barn)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 var dbBarn = _ctx.Barns.Where(b => b.BarnId == barn.BarnId).SingleOrDefault();
                 if (dbBarn != null)
