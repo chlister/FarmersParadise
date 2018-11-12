@@ -60,7 +60,7 @@ namespace FarmersParadise.Controllers.API
                 return BadRequest();
 
             _ctx.Pigs.Add(pig);
-            //context.SaveChanges();
+            _ctx.SaveChanges();
             return Ok();
 
         }
@@ -78,7 +78,7 @@ namespace FarmersParadise.Controllers.API
                 return NotFound();
 
             dbPig.Box = pig.Box;
-            //context.SaveChanges();
+            _ctx.SaveChanges();
 
             return Ok();
 
@@ -93,7 +93,7 @@ namespace FarmersParadise.Controllers.API
                 return BadRequest();
 
             _ctx.Pigs.Remove(dbPig);
-            //context.SaveChanges();
+            _ctx.SaveChanges();
 
             return Ok();
 

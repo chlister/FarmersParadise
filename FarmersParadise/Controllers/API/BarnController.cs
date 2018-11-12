@@ -48,7 +48,7 @@ namespace FarmersParadise.Controllers.API
             if (!ModelState.IsValid) // ModelState is when the JSON object is bound to the Barn object
             {
                 _ctx.Barns.Add(barn);
-                //context.SaveChanges();
+                _ctx.SaveChanges();
                 return Created("Created barn: ", barn);
 
             }
@@ -66,7 +66,7 @@ namespace FarmersParadise.Controllers.API
                 {
                     dbBarn.BarnName = barn.BarnName;
                     dbBarn.Boxes = barn.Boxes;
-                    //context.SaveChanges();
+                    _ctx.SaveChanges();
                     return Ok();
                 }
                 return BadRequest();
@@ -83,7 +83,7 @@ namespace FarmersParadise.Controllers.API
             if (dbBarn == null)
                 return BadRequest();
             _ctx.Barns.Remove(dbBarn);
-            //context.SaveChanges();
+            _ctx.SaveChanges();
             return Ok();
 
         }

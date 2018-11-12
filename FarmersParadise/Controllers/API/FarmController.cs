@@ -45,12 +45,12 @@ namespace FarmersParadise.Controllers.API
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var newFarm = new Farm();
             if (farm.FarmName != null)
             {
+                var newFarm = new Farm();
                 newFarm = farm;
                 _ctx.Farms.Add(newFarm);
-                //context.SaveChanges();
+                _ctx.SaveChanges();
 
                 return Created("Added to Db", newFarm);
             }
@@ -70,7 +70,7 @@ namespace FarmersParadise.Controllers.API
                     // We should talk about how we update here
                     DbFarm.FarmName = farm.FarmName;
                     DbFarm.Barns = farm.Barns;
-                    //context.SaveChanges();
+                    _ctx.SaveChanges();
                     return Ok();
                 }
                 return BadRequest();
@@ -83,16 +83,17 @@ namespace FarmersParadise.Controllers.API
         public IHttpActionResult Delete(int id)
         {
             if (!ModelState.IsValid)
+                return BadRequest();
+
+            var DbFarm = _ctx.Farms.Where(f => f.FarmId == id).SingleOrDefault();
+            if (DbFarm != null)
             {
-                var DbFarm = _ctx.Farms.Where(f => f.FarmId == id).SingleOrDefault();
-                if (DbFarm != null)
-                {
-                    _ctx.Farms.Remove(DbFarm);
-                    //context.SaveChanges();
-                    return Ok();
-                }
+                _ctx.Farms.Remove(DbFarm);
+                _ctx.SaveChanges();
+                return Ok();
             }
-            return BadRequest();
+            else
+                return BadRequest();
         }
     }
 }

@@ -1,8 +1,11 @@
 ﻿var Barns = {};
 var Sensors = {};
 var Bigs = {};
+var Farm = {};
 
-function Farmview_init() {
+function Farmview_init(object) {
+    Farm = object;
+    $("#FarmHeader").text("Farm: " + Farm.FarmName);
     Farmview_GetBarns();
 }
 
