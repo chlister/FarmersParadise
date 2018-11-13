@@ -2,6 +2,7 @@
 using FarmersParadise.Models.FarmManager;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -45,10 +46,12 @@ namespace FarmersParadise.Controllers.API
         [HttpPost]
         public IHttpActionResult Post(Barn barn)
         {
-            if (!ModelState.IsValid) // ModelState is when the JSON object is bound to the Barn object
+            if (ModelState.IsValid) // ModelState is when the JSON object is bound to the Barn object
             {
-                _ctx.Barns.Add(barn);
-                //context.SaveChanges();
+                Barn ba = new Barn(barn.BarnName);
+                _ctx.Farms.Where(f => f.FarmId == barn.Farm.FarmId).Include(b => b.Barns).SingleOrDefault().Barns.Add(ba);
+                //_ctx.Barns.Add(barn);
+                _ctx.SaveChanges();
                 return Created("Created barn: ", barn);
 
             }
@@ -59,14 +62,14 @@ namespace FarmersParadise.Controllers.API
         [HttpPut]
         public IHttpActionResult Put(int id, Barn barn)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 var dbBarn = _ctx.Barns.Where(b => b.BarnId == barn.BarnId).SingleOrDefault();
                 if (dbBarn != null)
                 {
                     dbBarn.BarnName = barn.BarnName;
                     dbBarn.Boxes = barn.Boxes;
-                    //context.SaveChanges();
+                    _ctx.SaveChanges();
                     return Ok();
                 }
                 return BadRequest();
@@ -83,7 +86,7 @@ namespace FarmersParadise.Controllers.API
             if (dbBarn == null)
                 return BadRequest();
             _ctx.Barns.Remove(dbBarn);
-            //context.SaveChanges();
+            _ctx.SaveChanges();
             return Ok();
 
         }
