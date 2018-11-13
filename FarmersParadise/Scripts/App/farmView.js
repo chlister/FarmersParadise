@@ -99,7 +99,7 @@ function Farmview_GetSensors() {
         // Concatinates the information to a string
         htmlString += "<ul>";
         for (i = 0; i < data.length; i++) {
-            htmlString += '<li><button class="listbutton" onclick="Farmview_ReadSensors(' + data[i].SensorId + ')" >' + data[i].SensorName + "(" + data[i].MacAddress + ")" + ".</button></li>";
+            htmlString += '<li><button class="listbutton" onclick="Farmview_ReadSensors(' + data[i].SensorId + ')" >' + data[i].SensorName + " (" + data[i].MacAddress + ")" + ".</button></li>";
         }
         htmlString += "</ul>";
         // Adds the strings to the html page
