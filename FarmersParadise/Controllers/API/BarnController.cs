@@ -22,7 +22,7 @@ namespace FarmersParadise.Controllers.API
         [HttpGet]
         public IHttpActionResult Get()
         {
-            var barnList = _ctx.Barns.ToList();
+            var barnList = _ctx.Barns.Include(f => f.Farm).ToList();
 
             return Ok(barnList);
 
