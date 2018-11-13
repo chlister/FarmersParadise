@@ -30,7 +30,9 @@ namespace SensorLib
         private static void InitializeGetIPsAndMac()
         {
             if (list != null)
-                return;
+            {
+                list.Clear();
+            }
 
             var arpStream = ExecuteCommandLine("arp", "-a");
             List<string> result = new List<string>();
