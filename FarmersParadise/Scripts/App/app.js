@@ -60,7 +60,7 @@ window.onload = function () {
             }
         };
         // Post the newly created Farm object - which is converted to an JSON object
-        callWebservice('POST', 'Farm', object = JSON.stringify(currentFarm));
+        callWebservice('POST', 'Farm', -1, JSON.stringify(currentFarm));
     }
 
     // Test code

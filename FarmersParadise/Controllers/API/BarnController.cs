@@ -2,6 +2,7 @@
 using FarmersParadise.Models.FarmManager;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -47,7 +48,9 @@ namespace FarmersParadise.Controllers.API
         {
             if (ModelState.IsValid) // ModelState is when the JSON object is bound to the Barn object
             {
-                _ctx.Barns.Add(barn);
+                Barn ba = new Barn(barn.BarnName);
+                _ctx.Farms.Where(f => f.FarmId == barn.Farm.FarmId).Include(b => b.Barns).SingleOrDefault().Barns.Add(ba);
+                //_ctx.Barns.Add(barn);
                 _ctx.SaveChanges();
                 return Created("Created barn: ", barn);
 

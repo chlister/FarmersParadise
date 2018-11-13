@@ -13,7 +13,7 @@ namespace FarmersParadise.Models.FarmManager
         public BoxType BoxType { get; set; }
         
         // Foreign keys
-        public virtual Barn Barn { get; set; }
-        public virtual ICollection<Pig> Pigs { get; set; }
+        public Barn Barn { get; set; }
+        public ICollection<Pig> Pigs { get; set; }
     }
 }

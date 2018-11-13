@@ -61,7 +61,7 @@ namespace FarmersParadise.Controllers.API
 
             _ctx.Pigs.Add(pig);
             _ctx.SaveChanges();
-            return Ok();
+            return Created("Added to Db", pig);
 
         }
 

@@ -3,7 +3,7 @@ namespace FarmersParadise.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class AddedDbClasses : DbMigration
+    public partial class init : DbMigration
     {
         public override void Up()
         {

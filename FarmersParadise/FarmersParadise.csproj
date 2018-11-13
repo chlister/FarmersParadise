@@ -149,12 +149,13 @@
     <Compile Include="Controllers\API\BoxController.cs" />
     <Compile Include="Controllers\API\FarmController.cs" />
     <Compile Include="Controllers\API\PigController.cs" />
+    <Compile Include="Controllers\API\TemperatureSensorController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201811100826138_AddedDbClasses.cs" />
-    <Compile Include="Migrations\201811100826138_AddedDbClasses.Designer.cs">
-      <DependentUpon>201811100826138_AddedDbClasses.cs</DependentUpon>
+    <Compile Include="Migrations\201811122112321_init.cs" />
+    <Compile Include="Migrations\201811122112321_init.Designer.cs">
+      <DependentUpon>201811122112321_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\FarmerContext.cs" />
@@ -202,9 +203,15 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201811100826138_AddedDbClasses.resx">
-      <DependentUpon>201811100826138_AddedDbClasses.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201811122112321_init.resx">
+      <DependentUpon>201811122112321_init.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SensorLib\SensorLib.csproj">
+      <Project>{e823dad5-900f-4b60-aa6b-13ac07c9e49a}</Project>
+      <Name>SensorLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
