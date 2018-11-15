@@ -1,7 +1,9 @@
 ﻿using FarmersParadise.Models;
+using FarmersParadise.Models.FarmManager;
 using FarmersParadise.Models.PigManager;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -27,6 +29,16 @@ namespace FarmersParadise.Controllers.API
 
         }
 
+        [HttpPost]
+        [Route("api/Pig/PigsFromBox")]
+        public IHttpActionResult PigsFromBox(Box box)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest();
+            var pigs = _ctx.Pigs.Where(p => p.Box.BoxId == box.BoxId).ToList(); // If box property is null the pig is homeless
+            return Ok(pigs);
+        }
+
         // GET: api/PigsWithoutBox
         /// <summary>
         /// Gets all pigs that is not associated with a box
@@ -36,7 +48,7 @@ namespace FarmersParadise.Controllers.API
         [Route("api/Pigs/PigsWithoutBox")]
         public IHttpActionResult PigsWithoutBox()
         {
-            var pigs = _ctx.Pigs.Where(p => p.Box == null).ToList(); // If box property is null the pig is homeless
+            var pigs = _ctx.Pigs.Include(i => i.Box).Where(p => p.Box == null).ToList(); // If box property is null the pig is homeless
             return Ok(pigs);
         }
 
@@ -67,7 +79,7 @@ namespace FarmersParadise.Controllers.API
 
         // PUT: api/Pig/5
         [HttpPut]
-        public IHttpActionResult Put(int id, Pig pig)
+        public IHttpActionResult Put(int id, Box box)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
@@ -76,8 +88,57 @@ namespace FarmersParadise.Controllers.API
 
             if (dbPig == null)
                 return NotFound();
+            Pig npig = new Pig();
+            npig.Box = dbPig.Box;
+            npig.CHRTag = dbPig.CHRTag;
+            npig.PigId = dbPig.PigId;
+            npig.PigType = dbPig.PigType;
 
-            dbPig.Box = pig.Box;
+            if (dbPig.Box != null)
+            {
+                _ctx.Boxes.Where(f => f.BoxId == dbPig.Box.BoxId).Include(b => b.Pigs).SingleOrDefault().Pigs.Remove(dbPig);
+                _ctx.Boxes.Where(f => f.BoxId == box.BoxId).Include(b => b.Pigs).SingleOrDefault().Pigs.Add(npig);
+            }
+            else
+            {
+                _ctx.Pigs.Remove(dbPig);
+                _ctx.Boxes.Where(f => f.BoxId == box.BoxId).Include(b => b.Pigs).SingleOrDefault().Pigs.Add(npig);
+            }
+            _ctx.SaveChanges();
+
+            return Ok(dbPig);
+
+        }
+
+        // PUT: api/Pig/5
+        [HttpPut]
+        [Route("api/Pig/MovePig")]
+        public IHttpActionResult MovePig(int id, Pig pig)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            Pig dbPig = new Pig();
+            dbPig.CHRTag = pig.CHRTag;
+            dbPig.PigId = pig.PigId;
+            dbPig.PigType = pig.PigType;
+
+            if (pig.Box != null)
+            {
+                var olddbPig = _ctx.Pigs.Where(p => p.PigId == pig.PigId).SingleOrDefault();
+                _ctx.Boxes.Where(f => f.BoxId == olddbPig.Box.BoxId).Include(b => b.Pigs).SingleOrDefault().Pigs.Remove(olddbPig);
+                _ctx.Boxes.Where(f => f.BoxId == pig.Box.BoxId).Include(b => b.Pigs).SingleOrDefault().Pigs.Add(dbPig);
+                
+            }
+            else
+            {
+                dbPig = _ctx.Pigs.Where(p => p.PigId == id).SingleOrDefault();
+                _ctx.Boxes.Where(f => f.BoxId == pig.Box.BoxId).Include(b => b.Pigs).SingleOrDefault().Pigs.Add(dbPig);
+            }
+
+            if (dbPig == null)
+                return NotFound();
+
             _ctx.SaveChanges();
 
             return Ok();

@@ -1,52 +1,40 @@
-﻿<h1 id="FarmHeader">Farm: </h1>
+﻿<h1 id="FarmHeader">FarmView : </h1>
 <div class="row">
     <div class="column">
-        <table class="cinereousTable">
+       <table>
             <thead>
-                <tr>
+                <tr class="table100-head">
                     <th><h2>Barns:</h2></th>
-                    <th align="center"><button id="js-BarnCreate" onclick="Farmview_Create('Barn')"> Create </button></th>
+                    <th><button class="btn btn-2 btn-2h" id="js-BarnCreate" onclick="Farmview_Create('Barn')">New Barn</button></th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td colspan="2">
-                        <div id="js-barnsContainer"></div>
-                    </td>
-                </tr>
+            <tbody id="js-barnsContainer">
+                
             </tbody>
         </table>
     </div>
     <div class="column">
-        <table class="cinereousTable">
+        <table>
             <thead>
-                <tr>
+                <tr class="table100-head">
                     <th><h2>Sensors:</h2></th>
-                    <th align="center"><button id="js-SensorCreate" onclick="Farmview_Create('Sensor')"> Create </button></th>
+                    <th><button class="btn btn-2 btn-2h" id="js-SensorCreate" onclick="Farmview_Create('Sensor')"> Create </button></th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td colspan="2">
-                        <div id="js-sensorsContainer"></div>
-                    </td>
-                </tr>
+            <tbody id="js-sensorsContainer">
             </tbody>
         </table>
     </div>
     <div class="column">
-        <table class="cinereousTable">
-            <thead>
+        <table>
+            <thead class="table100-head">
                 <tr>
                     <th><h2>Pigs:</h2></th>
-                    <th align="center"><button id="js-PigCreate" onclick="Farmview_Create('Pig')"> Create </button></th>
-                    <th align="center"><button id="js-PigMove"> Move </button></th>
+                    <th><button class="btn btn-2 btn-2h" id="js-PigCreate" onclick="Farmview_Create('Pig')"> Create </button></th>
+                    <th><button class="btn btn-2 btn-2h" id="js-PigMove" onclick="Farmview_Move('Pig')"> Move </button></th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td colspan="3"><div id="js-pigsContainer"></div></td>
-                </tr>
+            <tbody id="js-pigsContainer">
             </tbody>
         </table>
     </div>

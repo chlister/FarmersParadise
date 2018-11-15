@@ -1,19 +1,14 @@
-﻿<h1 id="BoxHeader">Box: </h1>
+﻿<h1 id="BoxHeader">BoxView : </h1>
 <div class="row">
     <div class="column">
-        <table class="cinereousTable">
+        <table>
             <thead>
-                <tr>
-                    <th><h2>Box:</h2></th>
-                    <th align="center"><button id="js-BoxCreate"> Create </button></th>
+                <tr class="table100-head">
+                    <th><h2>Pigs:</h2></th>
+                    <th><button class="btn btn-2 btn-2h" id="js-PigCreate"  onclick="Farmview_Move('pigmove')"> Move </button></th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td colspan="2">
-                        <div id="js-boxContainer"></div>
-                    </td>
-                </tr>
+            <tbody id="js-pigContainer">
             </tbody>
         </table>
     </div>

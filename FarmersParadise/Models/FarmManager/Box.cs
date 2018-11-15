@@ -14,6 +14,16 @@ namespace FarmersParadise.Models.FarmManager
         
         // Foreign keys
         public Barn Barn { get; set; }
+
         public ICollection<Pig> Pigs { get; set; }
+
+        public Box(string boxName)
+        {
+            BoxName = boxName;
+        }
+
+        public Box()
+        {
+        }
     }
 }

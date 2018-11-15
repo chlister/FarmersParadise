@@ -32,6 +32,7 @@ namespace FarmersParadise.Controllers.API
         [HttpGet]
         public IHttpActionResult Get(int id)
         {
+
             var barn = _ctx.Barns.Where(b => b.BarnId == id).SingleOrDefault();
 
             if (barn != null)
@@ -41,6 +42,7 @@ namespace FarmersParadise.Controllers.API
             return BadRequest();
 
         }
+
 
         // POST: api/Barn
         [HttpPost]

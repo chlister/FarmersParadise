@@ -3,11 +3,17 @@
 <head>
     <meta charset="utf-8" />
     <link href="Content/App/styles.css" rel="stylesheet" />
+    <link href="Content/App/navigation_syles.css" rel="stylesheet" />
     <script src="Scripts/jquery-3.3.1.min.js"></script>
     <script src="Scripts/App/webservice.js"></script>
 
+    <script src="Scripts/App/boxView.js"></script>
+    <script src="Scripts/App/barnView.js"></script>
     <script src="Scripts/App/farmView.js"></script>
+
     <script src="Scripts/App/createView.js"></script>
+    <script src="Scripts/App/movePage.js"></script>
+    <script src="Scripts/App/navigation.js"></script>
 
 
     <script src="Scripts/App/boxView.js"></script>
@@ -15,6 +21,11 @@
     <title>Farmers Paradise</title>
 </head>
 <body>
+    <div id="topnavigation" class="topnav">
+        <a id="nav_backbutton" onclick="nav_backbuttonclick()">Back</a>
+        <a id="nav_farmbutton" onclick="nav_farmbuttonclick()">FarmView</a>
+        <a id="nav_barnbutton" onclick="nav_barnbuttonclick()">BarnView</a>
+    </div>
     <div id="js-page">
         
     </div>

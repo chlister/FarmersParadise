@@ -1,4 +1,28 @@
-﻿function CreateBarn() {
+﻿var createType = "";
+function CreateView_init(type) {
+    createType = type;
+    nav_updateNavigationView(true, false, false, true);
+    $("#CreateView_Header").text("Create " + type);
+
+    if (type === "Barn") {
+        $("#CreateView_ExtraInput").hide();
+        $("#CreateView_SelectInput").hide();
+    }
+    else if (type === "Sensor") {
+        $("#CreateExtraName").text("MAC:");
+        $("#CreateView_SelectInput").hide();
+    }
+    else if (type === "Pig") {
+        $("#CreateExtraName").text("CHR:");
+        $("#CreateView_SelectInput").show();
+    }
+    else if (type === "Box") {
+        $("#CreateView_ExtraInput").hide();
+        $("#CreateView_SelectInput").hide();
+    }
+}
+
+function CreateBarn() {
     if ($("#CreateName").val() === "") {
         alert("Please Enter Name");
     }
@@ -71,6 +95,50 @@ function CreatePig() {
     
 }
 
+function CreateBox() {
+    // TODO Webservice call
+    var currentBox = {};
+    currentBox.BoxId = 0;
+    currentBox.BoxName = $("#CreateName").val();
+    currentBox.BoxType = $("#CreateSelectValue").val();
+    //currentPig.PigType = 1;
+    currentBox.Barn = SelectedBarn;
+    currentBox.Pigs = null;
+    // Subscribes to an event wich returns the JSON data
+    httpRequest.onload = function () {
+        // if object is created or OK show the object
+        if (httpRequest.status === 200 || httpRequest.status === 201) {
+            var data = JSON.parse(httpRequest.responseText);
+            if (data.length !== 0) {
+                console.log(data);
+                alert("Box was created!");
+                Barnview_Update();
+            }
+        }
+    };
+    callWebservice('POST', 'Box', -1, JSON.stringify(currentBox));
+
+}
+
+function CreateView_loadFarmView() {
+    $("#js-page").load("Page/FarmView.html", function (responseTxt, statusTxt, xhr) {
+        if (statusTxt === "error")
+            alert("Error: " + xhr.status + ": " + xhr.statusText);
+        if (statusTxt === "success") {
+
+        }
+    });
+}
+function CreateView_loadBarnView() {
+    $("#js-page").load("Page/BarnView.html", function (responseTxt, statusTxt, xhr) {
+        if (statusTxt === "error")
+            alert("Error: " + xhr.status + ": " + xhr.statusText);
+        if (statusTxt === "success") {
+
+        }
+    });
+}
+
 function CreatView_Create() {
     if (createType === "Barn") {
         if ($("#CreateName").val() === "") {
@@ -78,6 +146,7 @@ function CreatView_Create() {
             return;
         }
         CreateBarn();
+        CreateView_loadFarmView();
     }
     else if (createType === "Sensor") {
         if ($("#CreateName").val() === "") {
@@ -89,6 +158,7 @@ function CreatView_Create() {
             return;
         }
         CreateSensor();
+        CreateView_loadFarmView();
     }
     else if (createType === "Pig") {
         if ($("#CreateExtraValue").val() === "") {
@@ -96,14 +166,18 @@ function CreatView_Create() {
             return;
         }
         CreatePig();
+        CreateView_loadFarmView();
+    }
+    else if (createType === "Box") {
+        if ($("#CreateName").val() === "") {
+            alert("Please Enter Name");
+            return;
+        }
+        CreateBox();
+        CreateView_loadBarnView()
     }
 
 
-    $("#js-page").load("Page/FarmView.html", function (responseTxt, statusTxt, xhr) {
-        if (statusTxt === "error")
-            alert("Error: " + xhr.status + ": " + xhr.statusText);
-        if (statusTxt === "success") {
-            
-        }
-    });
+    
 }
+

@@ -2,6 +2,7 @@
 using FarmersParadise.Models.FarmManager;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -18,11 +19,26 @@ namespace FarmersParadise.Controllers.API
             _ctx = new FarmerContext();
         }
 
-        // GET: api/Boxes
+        // GET: api/Box
         [HttpGet]
         public IHttpActionResult Get()
         {
             var boxes = _ctx.Boxes.ToList();
+            return Ok(boxes);
+
+        }
+
+        // GET: api/Box/BoxWithBarn
+        [HttpGet]
+        [Route("api/Box/BoxWithBarn")]
+        public IHttpActionResult BoxWithBarn()
+        {
+            var boxes = _ctx.Boxes.Include(i => i.Barn).ToList();
+            for(int i = 0; i < boxes.Count(); i++)
+            {
+                boxes[i].BoxName = boxes[i].BoxName + "(Barn: " + boxes[i].Barn.BarnName + ")";
+                boxes[i].Barn = null;
+            }
             return Ok(boxes);
 
         }
@@ -39,6 +55,18 @@ namespace FarmersParadise.Controllers.API
 
         }
 
+        [HttpPost]
+        [Route("api/Box/BoxFromBarn")]
+        public IHttpActionResult BoxFromBarn(Barn barn)
+        {
+            if (ModelState.IsValid) // ModelState is when the JSON object is bound to the Barn object
+            {
+                var boxes = _ctx.Boxes.Where(p => p.Barn.BarnId == barn.BarnId).ToList();
+                return Ok(boxes);
+            }
+            return BadRequest();
+        }
+
         // POST: api/Boxes
         [HttpPost]
         public IHttpActionResult Post(Box box)
@@ -46,10 +74,11 @@ namespace FarmersParadise.Controllers.API
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            _ctx.Boxes.Add(box);
-            var boxInDb = _ctx.Boxes.Find(box);
+            Box ba = new Box(box.BoxName);
+            _ctx.Barns.Where(f => f.BarnId == box.Barn.BarnId).Include(b => b.Boxes).SingleOrDefault().Boxes.Add(ba);
+            //_ctx.Barns.Add(barn);
             _ctx.SaveChanges();
-            return Created("", boxInDb);
+            return Created("Created box: ", box);
 
         }
 

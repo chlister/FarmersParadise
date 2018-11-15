@@ -1,18 +1,14 @@
-﻿<h1 id="BarnHeader">Barn: </h1>
+﻿<h1 id="BarnHeader">BarnView : </h1>
 <div class="row">
     <div class="column">
-        <input id="js-BoxCreate" type="text"/>
-        <table class="cinereousTable">
+        <table>
             <thead>
-                <tr>
+                <tr class="table100-head">
                     <th><h2>Boxes:</h2></th>
-                    <th align="center"><button> + </button></th>
+                    <th><button class="btn btn-2 btn-2h" onclick="Barnview_Create('Box')"> Create </button></th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td colspan="2">January</td>
-                </tr>
+            <tbody id="js-boxContainer">
             </tbody>
         </table>
     </div>

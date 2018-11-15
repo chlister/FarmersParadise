@@ -88,6 +88,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\App\navigation_syles.css" />
     <Content Include="Content\App\styles.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -102,11 +103,15 @@
     <Content Include="Page\BarnView.html" />
     <Content Include="Page\FarmView.html" />
     <Content Include="Page\initPageView.html" />
+    <Content Include="Page\MovePage.html" />
+    <Content Include="Page\Navigation.html" />
     <Content Include="Scripts\App\app.js" />
     <Content Include="Scripts\App\createView.js" />
     <Content Include="Scripts\App\boxView.js" />
     <Content Include="Scripts\App\barnView.js" />
     <Content Include="Scripts\App\farmView.js" />
+    <Content Include="Scripts\App\movePage.js" />
+    <Content Include="Scripts\App\navigation.js" />
     <Content Include="Scripts\App\webservice.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />

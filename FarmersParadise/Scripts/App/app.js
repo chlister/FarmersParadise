@@ -1,5 +1,6 @@
 ﻿// this is needed because the .js file will load before the DOM
 window.onload = function () {
+    nav_updateNavigationView(false, false, false, false);
     httpRequest.onload = function () {
         // Looks at the respons from API.
         if (httpRequest.status === 200 || httpRequest.status === 201) {
