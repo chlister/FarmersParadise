@@ -156,7 +156,7 @@ namespace FarmersParadise.Controllers.API
             _ctx.Pigs.Remove(dbPig);
             _ctx.SaveChanges();
 
-            return Ok();
+            return Ok(dbPig);
 
         }
     }

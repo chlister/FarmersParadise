@@ -77,3 +77,66 @@ window.onload = function () {
     //}
 
     //console.info("Ready");
+
+document.addEventListener('long-press', function (e) {
+    if (e.path.length > 3) {
+        if (e.path[2].id === 'js-sensorsContainer') {
+            var retVal = confirm("Do you want to delete sensor ?");
+            if (retVal == true) 
+                deleteSensor(e.path[0].tabIndex)
+        }
+        else if (e.path[2].id === 'js-pigContainer' || e.path[2].id === 'js-pigsContainer') {
+            getPig(e.path[0].tabIndex);
+        }
+    }
+});
+
+function deleteSensor(id) {
+    httpRequest.onload = function () {
+        var data = JSON.parse(httpRequest.responseText);
+        // Concatinates the information to a string
+        if (document.getElementById("js-barnsContainer") !== null) {
+            document.getElementById("js-barnsContainer").innerHTML = "";
+            document.getElementById("js-sensorsContainer").innerHTML = "";
+            document.getElementById("js-pigsContainer").innerHTML = "";
+            Farmview_Update();
+        }
+    };
+    callWebservice('DELETE', 'TemperatureSensor/', id)
+}
+
+function getPig(id) {
+    httpRequest.onload = function () {
+        var data = JSON.parse(httpRequest.responseText);
+        // Concatinates the information to a string
+        if (data !== null) {
+            var retVal = confirm("Do you want to delete Pig: " + data.CHRTag);
+            if (retVal == true)
+                deletePig(data.PigId);
+        }
+        else
+            alert("Error: pig not found!s");
+
+    };
+    callWebservice('GET', 'Pig/', id);
+}
+
+function deletePig(id) {
+    httpRequest.onload = function () {
+        var data = JSON.parse(httpRequest.responseText);
+        // Concatinates the information to a string
+        if (document.getElementById("js-barnsContainer") !== null) {
+            document.getElementById("js-barnsContainer").innerHTML = "";
+            document.getElementById("js-sensorsContainer").innerHTML = "";
+            document.getElementById("js-pigsContainer").innerHTML = "";
+            Farmview_Update();
+        }
+        
+
+        if (document.getElementById("js-pigContainer") !== null) {
+            document.getElementById("js-pigContainer").innerHTML = "";
+            Boxview_Update();
+        }
+    };
+    callWebservice('DELETE', 'Pig/', id)
+}

@@ -68,7 +68,7 @@ function Farmview_GetPigs() {
 
         // Concatinates the information to a string
         for (i = 0; i < data.length; i++) {
-            htmlString += '<tr><td colspan="2" > CHR: ' + data[i].CHRTag  + '</td><td><input type="checkbox" onclick="AddRemoveToMoveList(' + data[i].PigId +')" /></td></tr>';
+            htmlString += '<tr><td tabindex="' + data[i].PigId + '" data-long-press-delay="1000" colspan="2" > CHR: ' + data[i].CHRTag  + '</td><td><input type="checkbox" onclick="AddRemoveToMoveList(' + data[i].PigId +')" /></td></tr>';
         }
         // Adds the strings to the html page
         pigsContainer.insertAdjacentHTML("beforeend", htmlString);
@@ -88,7 +88,7 @@ function Farmview_GetSensors() {
 
         // Concatinates the information to a string
         for (i = 0; i < data.length; i++) {
-            htmlString += '<tr><td colspan="2" onclick="Farmview_ReadSensors(' + data[i].SensorId + ')" >' + data[i].SensorName + " (" + data[i].MacAddress + ")" + "</td></tr>";
+            htmlString += '<tr><td colspan="2" tabindex="' + data[i].SensorId + '" data-long-press-delay="1000" onclick="Farmview_ReadSensors(' + data[i].SensorId + ')" >' + data[i].SensorName + " (" + data[i].MacAddress + ")" + "</td></tr>";
         }
         // Adds the strings to the html page
         sensorsContainer.insertAdjacentHTML("beforeend", htmlString);

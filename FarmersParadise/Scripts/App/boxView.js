@@ -27,7 +27,7 @@ function Boxview_GetPigs() {
 
         // Concatinates the information to a string
         for (i = 0; i < data.length; i++) {
-            htmlString += '<tr><td> CHR: ' + data[i].CHRTag + '</td><td><input type="checkbox" onclick="AddRemoveToMoveList(' + data[i].PigId + ')" /></td></tr>';
+            htmlString += '<tr><td tabindex="' + data[i].PigId + '" data-long-press-delay="1000"> CHR: ' + data[i].CHRTag + '</td><td><input type="checkbox" onclick="AddRemoveToMoveList(' + data[i].PigId + ')" /></td></tr>';
         }
         // Adds the strings to the html page
         pigContainer.insertAdjacentHTML("beforeend", htmlString);
@@ -35,3 +35,5 @@ function Boxview_GetPigs() {
     callWebservice('POST', 'Pig/PigsFromBox', -1, JSON.stringify(SelectedBox));
 
 }
+
+

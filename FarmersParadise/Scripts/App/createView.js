@@ -40,7 +40,6 @@ function CreateBarn() {
                 var data = JSON.parse(httpRequest.responseText);
                 if (data.length !== 0) {
                     console.log(data);
-                    alert("Barn was created!");
                     Farmview_Update();
                 }
             }
@@ -63,7 +62,6 @@ function CreateSensor() {
             var data = JSON.parse(httpRequest.responseText);
             if (data.length !== 0) {
                 console.log(data);
-                alert("Sensor was created!");
                 Farmview_Update();
             }
         }
@@ -86,7 +84,6 @@ function CreatePig() {
                 var data = JSON.parse(httpRequest.responseText);
                 if (data.length !== 0) {
                     console.log(data);
-                    alert("Pig was created!");
                     Farmview_Update();
                 }
             }
@@ -111,7 +108,6 @@ function CreateBox() {
             var data = JSON.parse(httpRequest.responseText);
             if (data.length !== 0) {
                 console.log(data);
-                alert("Box was created!");
                 Barnview_Update();
             }
         }

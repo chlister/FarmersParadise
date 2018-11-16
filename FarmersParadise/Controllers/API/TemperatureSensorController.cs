@@ -67,8 +67,17 @@ namespace FarmersParadise.Controllers.API
         }
 
         // DELETE api/<controller>/5
-        public void Delete(int id)
+        [HttpDelete]
+        public IHttpActionResult Delete(int id)
         {
+            var dbSensor = _ctx.TemperatureSensors.Where(p => p.SensorId == id).SingleOrDefault();
+            if (dbSensor == null)
+                return BadRequest();
+
+            _ctx.TemperatureSensors.Remove(dbSensor);
+            _ctx.SaveChanges();
+
+            return Ok(dbSensor);
         }
     }
 }

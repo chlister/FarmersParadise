@@ -80,7 +80,6 @@ function StartMovePigs() {
             StartMovePigs()
         }
         else {
-            alert("Pigs has been moved");
             nav_backbuttonclick();
         }
 
