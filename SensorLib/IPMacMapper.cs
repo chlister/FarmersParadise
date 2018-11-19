@@ -34,13 +34,22 @@ namespace SensorLib
                 list.Clear();
             }
 
+            // executes a arp request
             var arpStream = ExecuteCommandLine("arp", "-a");
             List<string> result = new List<string>();
             while (!arpStream.EndOfStream)
             {
+                // add all entries to the list result
                 var line = arpStream.ReadLine().Trim();
                 result.Add(line);
             }
+
+            /*
+             * finds the strings from the list where they are:
+             * not null
+             * contains either dynamic or static
+             * then splits those into an array containing only IP and MAC address
+             * */
 
             list = result.Where(x => !string.IsNullOrEmpty(x) && (x.Contains("dynamic") || x.Contains("static")))
                 .Select(x =>
@@ -50,6 +59,12 @@ namespace SensorLib
                 }).ToList();
         }
 
+        /// <summary>
+        /// Given a MAC address will find it IP counterpart
+        /// If none is found, returns NULL
+        /// </summary>
+        /// <param name="macAddress"></param>
+        /// <returns></returns>
         public static string FindIPFromMacAddress(string macAddress)
         {
             InitializeGetIPsAndMac();
@@ -59,6 +74,12 @@ namespace SensorLib
             return m.IP;
         }
 
+        /// <summary>
+        /// Given a IP address will find the IP counterpart
+        /// If none is found, returns NULL
+        /// </summary>
+        /// <param name="ip"></param>
+        /// <returns></returns>
         public static string FindMacFromIPAddress(string ip)
         {
             InitializeGetIPsAndMac();
